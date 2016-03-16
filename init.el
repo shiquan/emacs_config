@@ -37,6 +37,8 @@
      cedet
      zenburn-theme
      smartparens
+     auto-complete
+     ess
      )))
 
 (condition-case nil
@@ -50,6 +52,8 @@
 
 (require 'smartparens-config)
 (setq sp-autoescape-string-quote nil)
+
+(ac-config-default)
 
 (require 'setup-c-mode)
 (display-time-mode 1)
