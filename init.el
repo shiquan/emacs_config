@@ -24,7 +24,7 @@
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "backups")))))
-
+(global-set-key (kbd "C-x p") 'previous-multiframe-window)
 ;;(setq shift-select-mode nil)
 (require 'setup-package)
 
@@ -56,6 +56,7 @@
 (ac-config-default)
 
 (require 'setup-c-mode)
+(require 'setup-R-mode)
 (display-time-mode 1)
 ;;(require 'mode-mappings)
 
