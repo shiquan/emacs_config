@@ -2,6 +2,8 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+(setq-default indent-tabs-mode nil)
+
 (setq inhibit-startup-message t)
 
 ;; Set path to dependencies
@@ -39,6 +41,8 @@
      smartparens
      auto-complete
      ess
+     exec-path-from-shell
+     dash-at-point
      )))
 
 (condition-case nil
@@ -66,9 +70,16 @@
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
 
+(require-package 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 ;; Setup environment variables from the user's shell.
 (when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize)
   (set-face-attribute 'default nil :family "Monaco")
-  (set-face-attribute 'default nil :height 140))
+  (set-face-attribute 'default nil :height 120))
+
+
+(autoload 'dash-at-point "dash-at-point"
+  "Search the word at point with Dash." t nil)
+(global-set-key "\C-cd" 'dash-at-point)
+(global-set-key "\C-ce" 'dash-at-point-with-docset)
